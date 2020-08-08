@@ -1,4 +1,4 @@
-class LunchPartner
+class LunchPartnerSelector
   attr_reader :employees, :list_of_partners, :history
 
   def initialize(employees, history)

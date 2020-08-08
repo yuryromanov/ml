@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe LunchPartner, type: :model do
+describe LunchPartnerSelector, type: :model do
   describe '#perform' do
     # e = employee
     let(:e1){ FactoryBot.build_stubbed(:employee, id: 1, department_id: 1) }
@@ -63,6 +63,7 @@ describe LunchPartner, type: :model do
 
         it { is_expected.to eq([[e2, e1], [e3, e4]]) }
       end
+
     end
 
     context 'for 5 employees' do
