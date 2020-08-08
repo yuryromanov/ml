@@ -5,4 +5,21 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+if Rails.env.development?
+  email = 'admin@example.com'
+  if AdminUser.find_by(email: email).blank?
+    AdminUser.create!(email: email, password: 'PASS11111', password_confirmation: 'PASS11111')
+  end
+
+  # create departments
+  ['Sales', 'Marketing', 'Risk', 'Management', 'Finance', 'HR', 'Development', 'Data'].each do |name|
+    Department.create(name: name)
+  end
+
+  # create and add employeees to deparments
+  Department.all.each do |department|
+    (1..rand(10)).each do |index|
+      FactoryBot.create(:employee, department: department)
+    end
+  end
+end
