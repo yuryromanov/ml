@@ -50,6 +50,6 @@ class LunchPartner
   end
 
   def pair_count
-    @pair_count ||= (employees.length / 2) - 1
+    (employees.length / 2) - 1
   end
 end
