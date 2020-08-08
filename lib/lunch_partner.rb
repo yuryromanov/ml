@@ -1,21 +1,21 @@
-class PartnerSelector
-  attr_reader :employees, :pairs, :history, :list_of_partners
+class LunchPartner
+  attr_reader :employees, :list_of_partners, :history
 
   def initialize(employees, history)
     @employees = employees.clone
     @history = HistoryChecker.new(history)
-    @pairs = []
+    @list_of_partners = []
   end
 
   def perform
-    generate_partners
+    generate_list_of_partners
     fix_edge_cases
     list_of_partners
   end
 
   private
 
-  def generate_partners
+  def generate_list_of_partners
     @list_of_partners = (0..pair_count).map do |index|
       partner1 = employees.shift
       partner2 = employees.detect { |partner| history.none?(partner1.id, partner.id) }

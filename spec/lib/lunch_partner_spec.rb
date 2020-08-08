@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe PartnerSelector, type: :model do
+describe LunchPartner, type: :model do
   describe '#perform' do
     # e = employee
     let(:e1){ FactoryBot.build_stubbed(:employee, id: 1, department_id: 1) }
