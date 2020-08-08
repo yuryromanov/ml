@@ -18,7 +18,10 @@ class LunchPartner
   def generate_list_of_partners
     @list_of_partners = (0..pair_count).map do |index|
       partner1 = employees.shift
-      partner2 = employees.detect { |partner| history.none?(partner1.id, partner.id) }
+      partner2 = employees.detect do |partner|
+        history.none?(partner1.id, partner.id) &&
+          different_departments?([partner1, partner])
+      end
 
       employees.push(partner1) && next if partner2.nil?
 
@@ -38,15 +41,16 @@ class LunchPartner
 
   def join_to_existing_pair
     list_of_partners.each do |partners|
-      group = partners + [employees.last]
-      departments = group.map(&:department_id).uniq
-      different_departments = departments.count.eql?(group.count)
-
-      if different_departments
+      if different_departments?(partners + [employees.last])
         partners << employees.last
         break
       end
     end
+  end
+
+  def different_departments?(partners)
+    departments = partners.map(&:department_id).uniq
+    departments.count.eql?(partners.count)
   end
 
   def pair_count

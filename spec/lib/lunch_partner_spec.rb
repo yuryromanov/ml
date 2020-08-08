@@ -29,6 +29,15 @@ describe LunchPartner, type: :model do
 
       it { is_expected.to eq([[e1, e2], [e3, e4]]) }
 
+      context 'when e1, e2 and e3, e4 are in the same department' do
+        before do
+          e2.department_id = e1.department_id
+          e4.department_id = e3.department_id
+        end
+
+        it { is_expected.to eq([[e1, e3], [e2, e4]]) }
+      end
+
       context 'when e1 and e2 were partners' do
         let(:history) { [[e1.id, e2.id]] }
 
