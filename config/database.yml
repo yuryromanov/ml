@@ -21,6 +21,8 @@ development:
 test:
   <<: *default
   database: ml_test
+  username: <%= Rails.application.credentials.db_user %>
+  password: <%= Rails.application.credentials.db_password %>
 
 production:
   <<: *default
