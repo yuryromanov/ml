@@ -1,6 +1,6 @@
 # README
 
-##Coding challenge 
+### Coding challenge 
 
 I deployed the application. Address is [https://murmuring-escarpment-79264.herokuapp.com/admin/](https://murmuring-escarpment-79264.herokuapp.com/admin/). Credentials are `admin@example.com` and `PASS11111`.
 I added some test data: `departments`, `employees` and of course 3 `mystery lunches` for 3 months. Feel free to remove or add something on this server.
