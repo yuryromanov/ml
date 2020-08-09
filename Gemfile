@@ -43,15 +43,16 @@ gem 'gravtastic'
 # Whenever is a Ruby gem that provides a clear syntax for writing and deploying cron jobs.
 gem 'whenever', require: false
 
+# factories for specs
+gem 'factory_bot_rails'
+# fake data
+gem 'faker'
+
 group :development, :test do
   # test library
   gem 'rspec-rails', '~> 4.0.1'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  # factories for specs
-  gem 'factory_bot_rails'
-  # fake data
-  gem 'faker'
   # use command spring to improve rake performance
   gem 'spring-commands-rspec'
   gem 'spring'
