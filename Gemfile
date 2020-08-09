@@ -40,6 +40,9 @@ gem 'draper'
 # Adding Gravatar to the App
 gem 'gravtastic'
 
+# Whenever is a Ruby gem that provides a clear syntax for writing and deploying cron jobs.
+gem 'whenever', require: false
+
 group :development, :test do
   # test library
   gem 'rspec-rails', '~> 4.0.1'
