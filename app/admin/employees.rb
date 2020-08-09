@@ -4,7 +4,6 @@ ActiveAdmin.register Employee do
   decorate_with EmployeeDecorator
 
   index do
-    selectable_column
     id_column
     column :gravatar do |employee|
       image_tag employee.gravatar_url(:rating => 'R', :secure => true, default: 'identicon')
