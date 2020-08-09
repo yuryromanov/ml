@@ -34,6 +34,12 @@ gem 'activeadmin', '>= 2.7.0'
 # user authentification
 gem 'devise'
 
+# decorators for activeadmin
+gem 'draper'
+
+# Adding Gravatar to the App
+gem 'gravtastic'
+
 group :development, :test do
   # test library
   gem 'rspec-rails', '~> 4.0.1'

@@ -8,20 +8,15 @@ ActiveAdmin.register MysteryLunch do
 
   index do
     column :id
-    column :name do |mystery_lunch|
-      table_for(mystery_lunch.lunch_partners) do
+    column do |mystery_lunch|
+      table_for(mystery_lunch.lunch_partners.decorate) do
         column :id do |lunch_partner|
-          lunch_partner.employee.id
+          link_to(lunch_partner.employee.id, admin_employee_path(lunch_partner.employee.id), :class => 'member_link view_link')
         end
-        column :name do |lunch_partner|
-          lunch_partner.employee.name
-        end
-        column :email do |lunch_partner|
-          lunch_partner.employee.email
-        end
-        column :department do |lunch_partner|
-          lunch_partner.employee.department.name
-        end
+        column :gravatar
+        column :name
+        column :email
+        column :department
       end
     end
   end
