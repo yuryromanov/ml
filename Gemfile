@@ -43,6 +43,9 @@ group :development, :test do
   gem 'factory_bot_rails'
   # fake data
   gem 'faker'
+  # use command spring to improve rake performance
+  gem 'spring-commands-rspec'
+  gem 'spring'
 end
 
 group :development do
