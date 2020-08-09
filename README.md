@@ -22,7 +22,7 @@ To run this project on your local computer you need to install `ruby-2.6.5` and 
   rake db:migrate
   rake db:seed
   rails server
-  # and now open address http://localhost:3000 in your browser
+  # and now open address http://localhost:3000/admin in your browser
 ```
 
 Have a good review.
