@@ -22,4 +22,12 @@ if Rails.env.development?
       FactoryBot.create(:employee, department: department)
     end
   end
+
+  begin_date = Date.current - 2.months
+  (0..2).each do |index|
+    date = LunchDateFinder.new(begin_date).next_date
+    LunchCreator.new(date).perform
+
+    begin_date += 1.month
+  end
 end
