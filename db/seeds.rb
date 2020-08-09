@@ -16,9 +16,9 @@ if Rails.env.development?
     Department.create(name: name)
   end
 
-  # create and add employeees to deparments
+  # create and add employees to deparments
   Department.all.each do |department|
-    (1..rand(10)).each do |index|
+    (1..(3 + rand(10))).each do |index|
       FactoryBot.create(:employee, department: department)
     end
   end
