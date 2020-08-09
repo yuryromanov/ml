@@ -1,8 +1,15 @@
 class LunchPartnerSelector
   attr_reader :employees, :list_of_partners, :history
 
-  def initialize(employees, history)
-    @employees = employees.clone
+  def initialize(employees, history, shuffle: false)
+    if shuffle
+      @employees = employees.clone.shuffle
+    else
+      departments = employees.map(&:department_id)
+      @employees = employees.clone.sort do |a, b|
+        departments.count(b.department_id) <=> departments.count(a.department_id)
+      end
+    end
     @history = HistoryChecker.new(history)
     @list_of_partners = []
   end
@@ -16,7 +23,7 @@ class LunchPartnerSelector
   private
 
   def generate_list_of_partners
-    @list_of_partners = (0..pair_count).map do |index|
+    @list_of_partners = (0..pair_count).map do
       partner1 = employees.shift
       partner2 = employees.detect do |partner|
         history.none?(partner1.id, partner.id) &&
@@ -24,7 +31,6 @@ class LunchPartnerSelector
       end
 
       employees.push(partner1) && next if partner2.nil?
-
       employees.delete(partner2)
 
       [partner1, partner2]

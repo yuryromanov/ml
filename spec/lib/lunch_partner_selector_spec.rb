@@ -91,7 +91,7 @@ describe LunchPartnerSelector, type: :model do
         context 'and e1 and e4 have the same department' do
           before { e4.department_id = e1.department_id }
 
-          it { is_expected.to eq([[e1, e2], [e3, e5, e4]]) }
+          it { is_expected.to eq([[e1, e2, e5], [e4, e3]]) }
         end
       end
     end
@@ -100,6 +100,14 @@ describe LunchPartnerSelector, type: :model do
       let(:employees) { [e1, e2, e3, e4, e5, e6] }
 
       it { is_expected.to eq([[e1, e2], [e3, e4], [e5, e6]]) }
+
+      context 'when last 4 is in the same department' do
+        before do
+          e3.department_id = e4.department_id = e5.department_id = e6.department_id
+        end
+
+        it { is_expected.to eq([[e3, e1], [e4, e2], [e6, e5]]) }
+      end
 
       context 'when e1 and e2 were partners' do
         let(:history) { [[e1.id, e2.id]] }

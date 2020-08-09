@@ -7,6 +7,7 @@ ActiveAdmin.register Employee do
     column :email
     column :name
     column :department
+    column :available_for_lunch
     actions
   end
 
@@ -14,6 +15,7 @@ ActiveAdmin.register Employee do
   filter :last_name
   filter :email
   filter :department
+  filter :available_for_lunch
 
   form do |f|
     f.inputs do
@@ -21,6 +23,7 @@ ActiveAdmin.register Employee do
       f.input :last_name
       f.input :email
       f.input :department
+      f.input :available_for_lunch
     end
     f.actions
   end
