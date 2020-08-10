@@ -42,26 +42,26 @@ ActiveAdmin.register Employee do
       row :created_at
       row :updated_at
     end
-      mystery_lunches = MysteryLunch
-        .joins(:lunch_partners, :lunch_date)
-        .where(lunch_partners: { employee_id: employee.id })
-        .includes(lunch_partners: {employee: :department})
-        .order('lunch_dates.date': :desc)
+    mystery_lunches = MysteryLunch
+      .joins(:lunch_partners, :lunch_date)
+      .where(lunch_partners: { employee_id: employee.id })
+      .includes(lunch_partners: {employee: :department})
+      .order('lunch_dates.date': :desc)
 
-      mystery_lunches.each do |mystery_lunch|
-        panel("Mystery Lunch #{mystery_lunch.lunch_date.date}") do
-          table_for(mystery_lunch.lunch_partners.decorate, label: 'ddd') do
-            column :id do |lunch_partner|
-              link_to(lunch_partner.employee.id, admin_employee_path(lunch_partner.employee.id), :class => 'member_link view_link')
-            end
-            column :gravatar
-            column :name
-            column :email
-            column :department
+    mystery_lunches.each do |mystery_lunch|
+      panel("Mystery Lunch #{mystery_lunch.lunch_date.date}") do
+        table_for(mystery_lunch.lunch_partners.decorate, label: 'ddd') do
+          column :id do |lunch_partner|
+            link_to(lunch_partner.employee.id, admin_employee_path(lunch_partner.employee.id), :class => 'member_link view_link')
           end
+          column :gravatar
+          column :name
+          column :email
+          column :department
         end
       end
     end
+  end
 
   controller do
     def create
